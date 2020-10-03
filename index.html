@@ -1,0 +1,75 @@
+<script>
+  class cart {
+    constructor() {
+      this.list = [];
+      this.totalCost = 0;
+      this.addItem = function (obj) {
+        this.totalCost += obj.price;
+        if (this.list.length === 10) {
+          console.log("Cart Is Full");
+          return;
+        }
+        this.list.push(obj);
+      };
+      this.removeItem = function (id) {
+        let index = -1;
+        for (let i = 0; i < this.list.length; i++) {
+          if (this.list[i].id === id) {
+            index = i;
+            break;
+          }
+        }
+        if (index >= 0) {
+          this.totalCost -= this.list[index].price;
+          if (index === 0) {
+            let temp = this.list.slice(index + 1);
+
+            this.list = [];
+            for (let i = 0; i < temp.length; i++) this.list.push(temp[i]);
+          } else {
+            let temp1 = list(0, index);
+            let temp2 = [];
+            if (index < this.list.length - 1) temp2 = list(index + 1);
+
+            this.list = [];
+            for (let i = 0; i < temp1.length; i++) this.list.push(temp1[i]);
+
+            for (let i = 0; i < temp2.length; i++) this.list.push(temp2[i]);
+          }
+        }
+      };
+
+      this.checkOut = function () {
+        console.log(this.totalCost + " " + "Checking Out");
+        this.list.length = 0;
+        this.totalCost = 0;
+      };
+
+      this.Empty = function () {
+        this.list.length = 0;
+        this.totalCost = 0;
+      };
+    }
+  }
+  console.log("HELLO WORLD");
+  const Cart = new cart();
+
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.removeItem(101);
+  Cart.checkOut();
+
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.addItem({ id: 101, name: "trimmer", price: 1235 });
+  Cart.checkOut();
+</script>
